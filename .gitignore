@@ -18,3 +18,4 @@ bin/
 matching-web/dependency-reduced-pom.xml
 *.csv
 *.txt
+__pycache__/
