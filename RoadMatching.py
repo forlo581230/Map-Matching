@@ -33,6 +33,9 @@ def home():
         # else:
         txt += 'L.marker(['+str(nd[0])+', '+str(nd[1]) +'], {icon: redIcon}).addTo(mymap).bindPopup("'+str(i)+'").openPopup()'
         txt += ';\n'
+    
+    # if not os.path.exists('./test_omnieyes/WebVisualizeCode/'):
+    #     os.makedirs('./test_omnieyes/WebVisualizeCode/')
     # with open(os.path.join('./test_omnieyes/WebVisualizeCode/', txt_name), 'w') as f:
     #     f.write(txt)
     # print(os.path.join('./test_omnieyes/WebVisualizeCode/', txt_name), ' saved...')
@@ -61,6 +64,8 @@ def home():
     # print('Nd_trajectory: ', Nd_trajectory)
     data_colnames_trajectory = ['lat', 'lon']
     Df_trajectory = pd.DataFrame(Nd_trajectory, columns=data_colnames_trajectory)
+    if not os.path.exists('./test_omnieyes/DF_CSV/'):
+        os.makedirs('./test_omnieyes/DF_CSV/')
     Df_trajectory.to_csv(os.path.join('./test_omnieyes/DF_CSV/', '_Df_trajectory.csv'), index=0)
 
     print()
