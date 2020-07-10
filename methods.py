@@ -48,7 +48,7 @@ def ReadGPX(filename, getWebCode=False):
 
 def GraphHopper(gpxfile):
     # !bash ./mm.sh {gpxfile}
-    os.system('bash ./mm.sh ' + "gpxfile")
+    os.system('bash ./mm.sh ' + gpxfile)
 
 def SearchNodeID(df_Node, pos):
     '''
