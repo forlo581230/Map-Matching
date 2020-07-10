@@ -107,5 +107,5 @@ def home():
     # print(ret_json)
     return Response(json.dumps(ret_json), mimetype='application/json')
 
-
-app.run()
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',port=5000)
