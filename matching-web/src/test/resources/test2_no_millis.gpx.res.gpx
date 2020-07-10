@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" creator="Graphhopper version 1.0" version="1.1" xmlns:gh="https://graphhopper.com/public/schema/gpx/1.1">
+<metadata><copyright author="OpenStreetMap contributors"/><link href="http://graphhopper.com"><text>GraphHopper GPX</text></link><time>2020-05-15T08:32:56Z</time></metadata>
+<trk><name>GraphHopper</name><trkseg>
+<trkpt lat="51.377719" lon="12.338216"><time>2020-05-15T08:32:56Z</time></trkpt>
+<trkpt lat="51.37703" lon="12.339166"><time>2020-05-15T08:33:10Z</time></trkpt>
+<trkpt lat="51.37754" lon="12.340111"><time>2020-05-15T08:33:31Z</time></trkpt>
+<trkpt lat="51.342487" lon="12.480216"><time>2020-05-15T08:33:39Z</time></trkpt>
+</trkseg>
+</trk>
+</gpx>
