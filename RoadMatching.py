@@ -55,7 +55,7 @@ def home():
 
     try:
         os.remove(gpx_save_name)
-        os.system('rm ~/hs_err_pid*.log')
+        os.system('rm ./hs_err_pid*.log')
     except OSError as e:
         print(e)
     else:
