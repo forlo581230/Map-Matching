@@ -2,6 +2,7 @@ import os
 import math
 import numpy as np
 import pandas as pd
+import subprocess
 
 def GenGPX(df_RawData, save_name):
     ## 1. generate GPX file, 
@@ -48,7 +49,16 @@ def ReadGPX(filename, getWebCode=False):
 
 def GraphHopper(gpxfile):
     # !bash ./mm.sh {gpxfile}
-    os.system('bash ./mm.sh ' + gpxfile)
+    process = subprocess.Popen(('bash ./mm.sh ' + gpxfile).split(), stdout=subprocess.PIPE)
+    process.wait()
+    output, error = process.communicate()
+    
+    rows = len(output.decode().split('\n'))
+    
+    if rows >=8:
+        return True
+    else:
+        return False
 
 def SearchNodeID(df_Node, pos):
     '''
@@ -106,7 +116,7 @@ def MapMatching(gpxfile, tempfile):
             print('input points: {}~{}'.format((NofSeg-NofCover)*i, len(data)-1))
 
         ## Do MapMatching through GraphHopper
-        GraphHopper(tempfile)
+        isMatching = GraphHopper(tempfile)
         
         ## Read Mapping results
         nodes, _ = ReadGPX(tempfile+'.res.gpx')
@@ -126,7 +136,7 @@ def MapMatching(gpxfile, tempfile):
         else:
             Nd_trajectory.extend(nodes)
             
-    return Nd_trajectory
+    return Nd_trajectory, isMatching
 
 def CSVReader_GPS(data, video_list):           
     raw_data = [] 
