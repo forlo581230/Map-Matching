@@ -19,3 +19,5 @@ matching-web/dependency-reduced-pom.xml
 *.csv
 *.txt
 __pycache__/
+node_modules
+./*.gpx

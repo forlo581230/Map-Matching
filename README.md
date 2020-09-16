@@ -54,6 +54,20 @@ Now you can match GPX traces against the map:
 java -jar matching-web/target/graphhopper-map-matching-web-1.0-SNAPSHOT.jar match matching-web/src/test/resources/*.gpx
 ```
 
+### Web app(node.js)
+
+Start via:
+```bash
+node matching.server.js
+```
+
+Access the simple UI via `localhost:8989`.
+
+You can post GPX files and get back snapped results as GPX or as compatible GraphHopper JSON. An example curl request is:
+```bash
+curl -XPOST -H "Content-Type: application/gpx+xml" -d @matching-web/src/test/resources/test1.gpx "localhost:8989/match?vehicle=car&type=json"
+```
+
 ### Web app
 
 Start via:
