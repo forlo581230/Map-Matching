@@ -61,17 +61,20 @@ app.post('/mapMatching', function(req, res) {
             }
             if (error) {
                 console.error(new Date().toString(), 'stderr :', stderr);
-                return;
+                res.status(400).json({ "err_code": "40000" });
+            }else{
+                res.status(200).json(getGPX_location(gpxfile + '.res.gpx'));
             }
 
-            res.status(200).json(getGPX_location(gpxfile + '.res.gpx'));
         });
 
-        // return res.end();
+        res.end();
     }).on('close', () => {
-        res.status(400).json({ "err_code": "40000" });
+        res.end();
+        // res.status(400).json({ "err_code": "40000" });
     }).on('error', () => {
-        res.status(400).json({ "err_code": "40000" });
+        res.end();
+        // res.status(400).json({ "err_code": "40000" });
     });
 });
 
@@ -111,7 +114,7 @@ function getGPX_location(file) {
         return (obj);
 
     } catch (err) {
-        console.log(err);
+        console.log('getGPX_location', err);
         return null;
     }
 }
