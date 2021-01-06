@@ -44,9 +44,10 @@ app.post('/mapMatching', function(req, res) {
         console.info(trunk.length);
         buffers.push(trunk);
     }).on('end', async() => {
+
         const buffer = Buffer.concat(buffers);
         // console.log(buffer.toString());
-        let gpxfile = __dirname + `/${moment().format('HHmmss.SSS')}.gpx`;
+        let gpxfile = path.join(__dirname , `${moment().format('HHmmss.SSS')}.gpx`);
         fs.writeFileSync(gpxfile, buffer);
         console.log("產生->", gpxfile);
 
@@ -54,7 +55,7 @@ app.post('/mapMatching', function(req, res) {
             // exec(`java -jar ../matching-web/target/graphhopper-map-matching-web-1.0-SNAPSHOT.jar match ${gpxfile}`, function(error, stdout, stderr) {
             if (stdout.length > 1) {
                 // let list = stdout.replace(/'/g, `"`);
-                console.log(new Date().toString(), stdout);
+                // console.log(new Date().toString(), stdout);
                 fs.unlink(gpxfile, (err) => { if (err) console.error(err); })
             } else {
                 // console.log("you don\’t offer args");
@@ -68,13 +69,15 @@ app.post('/mapMatching', function(req, res) {
 
         });
 
-        res.end();
-    }).on('close', () => {
-        res.end();
-        // res.status(400).json({ "err_code": "40000" });
-    }).on('error', () => {
-        res.end();
-        // res.status(400).json({ "err_code": "40000" });
+
+    })
+    // .on('close', () => {
+    //     console.log('close');
+    //     res.status(400).json({ "err_code": "40000" });
+    // })
+    .on('error', (err) => {
+        console.error('mapMatching error:',err);
+        res.status(400).json({ "err_code": "40000" });
     });
 });
 
