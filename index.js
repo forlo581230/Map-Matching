@@ -56,7 +56,7 @@ app.post('/mapMatching', function(req, res) {
             if (stdout.length > 1) {
                 // let list = stdout.replace(/'/g, `"`);
                 // console.log(new Date().toString(), stdout);
-                fs.unlink(gpxfile, (err) => { if (err) console.error(err); })
+                fs.unlink(gpxfile, (err) => { if (err) console.error('mapMatching delete error:',err); })
             } else {
                 // console.log("you don\’t offer args");
             }
